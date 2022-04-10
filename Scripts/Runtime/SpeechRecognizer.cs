@@ -8,12 +8,16 @@ namespace DoubTech.SpeechRecognizerVoiceSDK
 {
     public class SpeechRecognizer : MonoBehaviour
     {
+        public string _languageModelDirPath = "SpeechRecognitionSystem/model/english_small";
+
         [SerializeField] private SpeechRecognitionSystem.SpeechRecognizer _speechRecognizer;
 
         [SerializeField]
         private UnityEvent<string> _onPartialTranscription = new UnityEvent<string>();
         [SerializeField]
         private UnityEvent<string> _onFullTranscription = new UnityEvent<string>();
+
+        private string ModelPath => Application.streamingAssetsPath + "/" + _languageModelDirPath;
 
         private void Awake()
         {
@@ -22,8 +26,11 @@ namespace DoubTech.SpeechRecognizerVoiceSDK
 
         private void OnEnable()
         {
-            AudioBuffer.Instance.Events.OnFloatSampleReady += OnSampleReady;
-            AudioBuffer.Instance.StartRecording(this);
+            if (_speechRecognizer.Init(ModelPath))
+            {
+                AudioBuffer.Instance.Events.OnFloatSampleReady += OnSampleReady;
+                AudioBuffer.Instance.StartRecording(this);
+            }
         }
 
         private void OnDisable()
@@ -36,7 +43,11 @@ namespace DoubTech.SpeechRecognizerVoiceSDK
             int resultReady = _speechRecognizer.AppendAudioData(sample);
             if (resultReady == 0)
             {
-                _onPartialTranscription.Invoke(_speechRecognizer.GetPartialResult()?.partial);
+                var partial = _speechRecognizer.GetPartialResult()?.partial;
+                if (!string.IsNullOrEmpty(partial))
+                {
+                    _onPartialTranscription.Invoke(partial);
+                }
             }
             else
             {
