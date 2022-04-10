@@ -1,14 +1,14 @@
 {
-  "name": "",
-  "displayName": "",
+  "name": "com.doubtech.unity.voice.speechrecognizer",
+  "displayName": "DoubTech - 3rd Party - Speech Recognizer + Voice SDK",
   "version": "0.0.1",
   "unity": "2019.4",
-  "description": "",
+  "description": "A simple integration of the SpeechRecognizer asset with Voice SDK",
   "keywords": [],
   "category": "Scripts",
   "type": "tool",
   "author": {
-    "name": "",
+    "name": "Doubling Technologies",
     "url": ""
   }
 }

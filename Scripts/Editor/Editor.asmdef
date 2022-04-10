@@ -1,6 +1,7 @@
 {
-    "name": "",
+    "name": "DoubTech.SpeechRecognizerVoiceSDK.Editor",
     "rootNamespace": "",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
