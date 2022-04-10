@@ -17,7 +17,12 @@ namespace DoubTech.SpeechRecognizerVoiceSDK
         [SerializeField]
         private UnityEvent<string> _onFullTranscription = new UnityEvent<string>();
 
+        private bool _initialized;
+
         private string ModelPath => Application.streamingAssetsPath + "/" + _languageModelDirPath;
+
+        public UnityEvent<string> OnPartialTranscription => _onPartialTranscription;
+        public UnityEvent<string> OnFullTranscription => _onFullTranscription;
 
         private void Awake()
         {
@@ -26,7 +31,8 @@ namespace DoubTech.SpeechRecognizerVoiceSDK
 
         private void OnEnable()
         {
-            if (_speechRecognizer.Init(ModelPath))
+            _initialized = _speechRecognizer.Init(ModelPath);
+            if (_initialized)
             {
                 AudioBuffer.Instance.Events.OnFloatSampleReady += OnSampleReady;
                 AudioBuffer.Instance.StartRecording(this);
@@ -40,6 +46,8 @@ namespace DoubTech.SpeechRecognizerVoiceSDK
 
         private void OnSampleReady(float[] sample)
         {
+            if (!_initialized) return;
+
             int resultReady = _speechRecognizer.AppendAudioData(sample);
             if (resultReady == 0)
             {

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2756732762088432200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2756732762088432206}
+  - component: {fileID: 2756732762088432207}
+  - component: {fileID: 2756732762088432205}
+  m_Layer: 0
+  m_Name: RecognizerWithMatcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2756732762088432206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756732762088432200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2756732762088432207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756732762088432200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a504eb3a263515944a715dac3caab713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _languageModelDirPath: SpeechRecognitionSystem/model/english_small
+  _onPartialTranscription:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFullTranscription:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2756732762088432205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756732762088432200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df2f944ded744fb830580b8d14bddec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _searchString: jarvis
+  _useRegularExpressions: 0
+  _requireStartsWith: 0
+  _speechRecognizer: {fileID: 2756732762088432207}
+  onMatched:
+    m_PersistentCalls:
+      m_Calls: []
